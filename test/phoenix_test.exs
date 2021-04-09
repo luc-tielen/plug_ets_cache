@@ -36,7 +36,7 @@ if Code.ensure_loaded?(Phoenix.Controller) do
       conn = action(FakeController, :get, :index, "content-type": "text/plain")
       cached_resp = PlugEtsCache.Store.get(conn)
 
-      assert conn.resp_body == "Hello cache\n"
+      assert conn.resp_body == "Hello cache"
       assert cached_resp.value == conn.resp_body
       assert cached_resp.type == "text/plain; charset=utf-8"
     end
@@ -45,7 +45,7 @@ if Code.ensure_loaded?(Phoenix.Controller) do
       conn = action(FakeController, :get, :index_with_ttl, "content-type": "text/plain")
       cached_resp = PlugEtsCache.Store.get(conn)
 
-      assert conn.resp_body == "Hello cache\n"
+      assert conn.resp_body == "Hello cache"
       assert cached_resp.value == conn.resp_body
       assert cached_resp.type == "text/plain; charset=utf-8"
     end
@@ -54,7 +54,7 @@ if Code.ensure_loaded?(Phoenix.Controller) do
       conn = action(FakeController, :get, :index_with_opts, "content-type": "text/plain")
       cached_resp = PlugEtsCache.Store.get(conn, [cache_key: fn conn -> conn.request_path end])
 
-      assert conn.resp_body == "Hello cache_opts\n"
+      assert conn.resp_body == "Hello cache_opts"
       assert cached_resp.value == conn.resp_body
       assert cached_resp.type == "text/plain; charset=utf-8"
     end
